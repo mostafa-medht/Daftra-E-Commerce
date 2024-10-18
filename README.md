@@ -1,2 +1,2 @@
-# daftra-e-commerce
+# Daftra-E-Commerce
 Daftra E-Commerce App
