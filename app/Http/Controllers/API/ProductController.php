@@ -11,7 +11,6 @@ use App\Services\ProductServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use function Illuminate\Support\Facades\Process;
 
 class ProductController extends BaseController
 {
