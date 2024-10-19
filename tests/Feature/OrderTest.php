@@ -39,9 +39,10 @@ class OrderTest extends TestCase
 
         // Assert that the request fails and returns a meaningful error message
         $response->assertStatus(422);
+
         $response->assertJson([
-            'message' => 'Order creation failed',
-            'error' => 'Insufficient stock for product: Test Product'
+            'message' => "main.can't_store_order, Insufficient stock for product: Test Product",
+            'status' => false
         ]);
 
         // Ensure no changes were made to the database (order or stock)
