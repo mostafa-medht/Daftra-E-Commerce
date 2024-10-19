@@ -46,7 +46,6 @@ class BaseController extends Controller
 
     public function getPagination($result)
     {
-
         return PaginatedResource::make($result);
     }
 

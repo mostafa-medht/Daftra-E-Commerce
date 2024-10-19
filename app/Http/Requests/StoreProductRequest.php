@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class StoreProductRequest extends FormRequest
 {
@@ -26,5 +28,12 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
     }
 }
