@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Order controller
     Route::controller(OrderController::class)->prefix('orders')->group(function () {
         Route::post('/store','store');
-        Route::get('/show/', 'show');
+        Route::get('/show/{id}', 'show');
     });
 
     Route::controller(ProductController::class)->prefix('products')->group(function () {

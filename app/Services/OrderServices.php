@@ -16,6 +16,7 @@ class OrderServices
     public function createOrder(array $orderData)
     {
         $orderProducts = $orderData['products'];
+
         // get order products ids
         $productIds = $this->getProductsIdsForOrder($orderProducts);
 
@@ -33,7 +34,7 @@ class OrderServices
             // Loop through products and adjust stock
             foreach ($orderProducts as $productData) {
                 // Find product in the products collection by its ID
-                $product = $products->find('id', $productData['id']);
+                $product = $products->where('id', $productData['id'])->first();
 
                 if ($product->quantity < $productData['quantity']) {
                     throw new \Exception('Insufficient stock for product: ' . $product->name);
@@ -58,5 +59,13 @@ class OrderServices
         return array_map(function($product) {
             return $product['id'];
         }, $orderProducts);
+    }
+
+    /**
+     * Get a specific order by ID.
+     */
+    public function getOrderById(int $orderId): Order
+    {
+        return Order::with('products')->findOrFail($orderId);
     }
 }
